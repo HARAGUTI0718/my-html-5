@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office365からGoogle Workspaceへの移行計画書 - ナカソネ住設株式会社</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+        
+        const ChevronLeft = () => (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+        );
+        
+        const ChevronRight = () => (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+        );
+
+        const MigrationPlan = () => {
+            const [currentSlide, setCurrentSlide] = useState(0);
+
+            const slides = [
+                {
+                    title: "Office365から\nGoogle Workspaceへの\n移行計画書",
+                    subtitle: "ナカソネ住設株式会社",
+                    content: null,
+                    bgColor: "bg-blue-600"
+                },
+                {
+                    title: "移行の目的と内容",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-white p-4 rounded-lg shadow-md">
+                                <h3 className="text-lg font-bold text-blue-700 mb-2">なぜ移行するのか？</h3>
+                                <ul className="space-y-2 text-sm">
+                                    <li className="flex items-start">
+                                        <span className="text-blue-500 mr-2">●</span>
+                                        <span>コストの最適化（Office365の利用料削減）</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="text-blue-500 mr-2">●</span>
+                                        <span>社内の情報共有をもっと簡単に</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="text-blue-500 mr-2">●</span>
+                                        <span>どこからでもアクセスできる環境づくり</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                                <div className="bg-red-50 p-4 rounded-lg border-2 border-red-200">
+                                    <h3 className="font-bold text-base mb-2 text-red-700">【今まで使っていたもの】</h3>
+                                    <ul className="space-y-1 text-sm">
+                                        <li>📁 NASサーバ（ファイル保存）</li>
+                                        <li>📧 Outlook（メール）</li>
+                                        <li>📊 Excel（表計算）</li>
+                                        <li>📝 Word（文書作成）</li>
+                                        <li>📽️ PowerPoint（資料作成）</li>
+                                        <li>🎥 ZOOM（ビデオ会議）</li>
+                                        <li>💬 LINE WORKS（チャット）</li>
+                                    </ul>
+                                </div>
+                                <div className="bg-green-50 p-4 rounded-lg border-2 border-green-200">
+                                    <h3 className="font-bold text-base mb-2 text-green-700">【これから使うもの】</h3>
+                                    <ul className="space-y-1 text-sm">
+                                        <li>☁️ Googleドライブ・AWS</li>
+                                        <li>📧 Gmail</li>
+                                        <li>📊 Googleスプレッドシート</li>
+                                        <li>📝 Googleドキュメント</li>
+                                        <li>📽️ Googleスライド</li>
+                                        <li>🎥 Google Meet</li>
+                                        <li>💬 Google Chat</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3">
+                                <p className="text-sm text-gray-700"><strong>注意：</strong>移行期間中は両方のサービスの料金が発生するため、計画的に進めます</p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "移行の順序（どの順番で進めるか）",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-blue-50 p-4 rounded-lg">
+                                <h3 className="font-bold text-lg mb-2 text-blue-700">【基本的な考え方】</h3>
+                                <p className="text-gray-700">準備ができたところから順番に進めていきます</p>
+                            </div>
+                            <div className="space-y-3">
+                                <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+                                    <div className="flex items-center mb-2">
+                                        <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">第1段階</span>
+                                        <span className="font-bold text-lg">データの整理と移行準備</span>
+                                    </div>
+                                    <p className="text-gray-600 ml-16">まずは今あるデータを整理します</p>
+                                </div>
+                                <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+                                    <div className="flex items-center mb-2">
+                                        <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">第2段階</span>
+                                        <span className="font-bold text-lg">ファイルの移行</span>
+                                    </div>
+                                    <p className="text-gray-600 ml-16">NASサーバからGoogleドライブへ</p>
+                                </div>
+                                <div className="bg-white p-4 rounded-lg shadow border-l-4 border-yellow-500">
+                                    <div className="flex items-center mb-2">
+                                        <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">第3段階</span>
+                                        <span className="font-bold text-lg">メールの切り替え</span>
+                                    </div>
+                                    <p className="text-gray-600 ml-16">OutlookからGmailへ（1人ずつ対応）</p>
+                                </div>
+                                <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+                                    <div className="flex items-center mb-2">
+                                        <span className="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">第4段階</span>
+                                        <span className="font-bold text-lg">会議ツールの切り替え</span>
+                                    </div>
+                                    <p className="text-gray-600 ml-16">ZOOMとLINE WORKSから、Google MeetとChatへ</p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "第1段階：データの整理と準備",
+                    subtitle: "期間目安：2～3週間",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-green-50 p-5 rounded-lg">
+                                <h3 className="font-bold text-lg mb-3 text-green-700">【やること】</h3>
+                                <div className="space-y-3">
+                                    <div className="bg-white p-3 rounded">
+                                        <p className="font-bold mb-1">① 不要なファイルの削除</p>
+                                        <p className="text-sm text-gray-600">各部署で古いファイルや使わないファイルを整理</p>
+                                    </div>
+                                    <div className="bg-white p-3 rounded">
+                                        <p className="font-bold mb-1">② フォルダ構成の見直し</p>
+                                        <p className="text-sm text-gray-600">Googleドライブに移した時に分かりやすいように整理</p>
+                                    </div>
+                                    <div className="bg-white p-3 rounded">
+                                        <p className="font-bold mb-1">③ 移行するファイルのリスト作成</p>
+                                        <p className="text-sm text-gray-600">どのファイルを移すのか確認</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-blue-50 p-4 rounded-lg">
+                                <h3 className="font-bold mb-2 text-blue-700">【部署ごとの対応】</h3>
+                                <div className="grid grid-cols-2 gap-2 text-sm">
+                                    <div>• 本社（管理部、営業本部）</div>
+                                    <div>• 九州エリア（5営業所）</div>
+                                    <div>• 中国エリア（2営業所）</div>
+                                    <div>• 関西エリア（5営業所）</div>
+                                    <div>• 関東エリア（3営業所）</div>
+                                </div>
+                            </div>
+                            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3">
+                                <p className="text-sm"><strong>ポイント：</strong>各営業所とも連携して、全員で協力して整理します</p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "第2段階：ファイルの移行",
+                    subtitle: "期間目安：3～4週間",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-blue-50 p-5 rounded-lg">
+                                <h3 className="font-bold text-lg mb-3 text-blue-700">【移行先】</h3>
+                                <div className="space-y-2">
+                                    <div className="bg-white p-3 rounded flex items-center">
+                                        <span className="text-2xl mr-3">☁️</span>
+                                        <div>
+                                            <p className="font-bold">Googleドライブ（共有ドライブ）</p>
+                                            <p className="text-sm text-gray-600">部署ごとにフォルダを作成して整理</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white p-3 rounded flex items-center">
+                                        <span className="text-2xl mr-3">🔒</span>
+                                        <div>
+                                            <p className="font-bold">AWS</p>
+                                            <p className="text-sm text-gray-600">重要なデータや大容量データの保管場所</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg shadow">
+                                <h3 className="font-bold mb-3">【移行の手順】</h3>
+                                <div className="space-y-2 text-sm">
+                                    <div className="flex items-start">
+                                        <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">1</span>
+                                        <span>部署ごとに共有ドライブのフォルダを作成</span>
+                                    </div>
+                                    <div className="flex items-start">
+                                        <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">2</span>
+                                        <span>NASサーバから必要なファイルをコピー</span>
+                                    </div>
+                                    <div className="flex items-start">
+                                        <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">3</span>
+                                        <span>Excel・Word・PowerPointファイルをそのまま移行（必要に応じて変換）</span>
+                                    </div>
+                                    <div className="flex items-start">
+                                        <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">4</span>
+                                        <span>各部署で動作確認（ファイルが開けるか、問題ないか）</span>
+                                    </div>
+                                    <div className="flex items-start">
+                                        <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">5</span>
+                                        <span>問題なければ次の部署へ（順次進める）</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-red-50 border-l-4 border-red-400 p-3">
+                                <p className="text-sm"><strong>注意：</strong>移行完了までNASサーバのデータは残しておきます</p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "ファイル形式の扱いについて",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-purple-50 p-5 rounded-lg">
+                                <h3 className="font-bold text-lg mb-3 text-purple-700">【基本方針】</h3>
+                                <p className="text-gray-700 mb-3">ExcelやWordファイルは、とりあえずそのままGoogleドライブに保存します</p>
+                                <p className="text-sm text-gray-600">※必要に応じて、スプレッドシートやドキュメントに変換することも可能です</p>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg shadow">
+                                <h3 className="font-bold mb-3">【ファイル変換の例】</h3>
+                                <div className="space-y-2 text-sm">
+                                    <div className="flex items-center p-2 bg-gray-50 rounded">
+                                        <span className="font-bold mr-2">Excel →</span>
+                                        <span>Googleスプレッドシート（必要な場合のみ）</span>
+                                    </div>
+                                    <div className="flex items-center p-2 bg-gray-50 rounded">
+                                        <span className="font-bold mr-2">Word →</span>
+                                        <span>Googleドキュメント（必要な場合のみ）</span>
+                                    </div>
+                                    <div className="flex items-center p-2 bg-gray-50 rounded">
+                                        <span className="font-bold mr-2">PowerPoint →</span>
+                                        <span>Googleスライド（必要な場合のみ）</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-yellow-50 p-4 rounded-lg border-2 border-yellow-300">
+                                <h3 className="font-bold mb-2 text-yellow-800">【重要な判断】</h3>
+                                <p className="text-gray-700 mb-2">社外からExcelやWordファイルが送られてくることがあります</p>
+                                <p className="text-gray-700"><strong>対応案：</strong>数名分のOffice365アカウントは残して、社外とのファイルのやり取り用に使う</p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "第3段階：メールの切り替え",
+                    subtitle: "期間目安：4～6週間",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-orange-50 p-5 rounded-lg">
+                                <h3 className="font-bold text-lg mb-3 text-orange-700">【Outlook → Gmail】</h3>
+                                <p className="text-gray-700 mb-3">今使っているメールアドレスはそのまま、受信する場所だけGmailに変わります</p>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg shadow">
+                                <h3 className="font-bold mb-3">【切り替えの手順（1人ずつ）】</h3>
+                                <div className="space-y-2 text-sm">
+                                    <div className="flex items-start">
+                                        <span className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">1</span>
+                                        <div>
+                                            <p className="font-bold">メールの整理</p>
+                                            <p className="text-gray-600">不要なメールを削除、必要なメールはフォルダ分け</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start">
+                                        <span className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">2</span>
+                                        <div>
+                                            <p className="font-bold">Gmailの設定</p>
+                                            <p className="text-gray-600">今のメールアドレスでGmailで受信できるように設定</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start">
+                                        <span className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">3</span>
+                                        <div>
+                                            <p className="font-bold">動作確認</p>
+                                            <p className="text-gray-600">テストメールを送受信して問題ないか確認</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start">
+                                        <span className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 flex-shrink-0">4</span>
+                                        <div>
+                                            <p className="font-bold">本格運用開始</p>
+                                            <p className="text-gray-600">問題なければGmailで通常業務を開始</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-red-50 border-l-4 border-red-400 p-3">
+                                <p className="text-sm"><strong>時間がかかる理由：</strong>社員1人ずつ設定が必要なため、全員の移行には4～6週間程度かかる見込みです</p>
+                            </div>
+                            <div className="bg-blue-50 p-3 rounded">
+                                <p className="text-sm"><strong>対応人数：</strong>本社約40名 + 営業所約140名 = 合計約180名</p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "第4段階：会議・チャットツールの切り替え",
+                    subtitle: "期間目安：2～3週間",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="bg-green-50 p-4 rounded-lg">
+                                    <h3 className="font-bold mb-3 text-green-700">【ZOOM → Google Meet】</h3>
+                                    <div className="space-y-2 text-sm">
+                                        <div className="bg-white p-2 rounded">
+                                            <p className="font-bold">① 準備</p>
+                                            <p className="text-gray-600">社員全員のGoogleアカウントでMeetが使えることを確認</p>
+                                        </div>
+                                        <div className="bg-white p-2 rounded">
+                                            <p className="font-bold">② 練習</p>
+                                            <p className="text-gray-600">テスト会議を開催して使い方を確認</p>
+                                        </div>
+                                        <div className="bg-white p-2 rounded">
+                                            <p className="font-bold">③ 切り替え</p>
+                                            <p className="text-gray-600">問題なければMeetに完全移行</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="bg-blue-50 p-4 rounded-lg">
+                                    <h3 className="font-bold mb-3 text-blue-700">【LINE WORKS → Google Chat】</h3>
+                                    <div className="space-y-2 text-sm">
+                                        <div className="bg-white p-2 rounded">
+                                            <p className="font-bold">① グループ作成</p>
+                                            <p className="text-gray-600">部署ごと、プロジェクトごとにChatグループを作成</p>
+                                        </div>
+                                        <div className="bg-white p-2 rounded">
+                                            <p className="font-bold">② メンバー登録</p>
+                                            <p className="text-gray-600">各グループに必要なメンバーを追加</p>
+                                        </div>
+                                        <div className="bg-white p-2 rounded">
+                                            <p className="font-bold">③ 使い方説明</p>
+                                            <p className="text-gray-600">簡単な使い方マニュアルを配布</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg shadow">
+                                <h3 className="font-bold mb-2">【作成が必要なグループの例】</h3>
+                                <div className="grid grid-cols-3 gap-2 text-sm">
+                                    <div className="p-2 bg-gray-50 rounded">本社全体</div>
+                                    <div className="p-2 bg-gray-50 rounded">管理部</div>
+                                    <div className="p-2 bg-gray-50 rounded">営業本部</div>
+                                    <div className="p-2 bg-gray-50 rounded">九州エリア</div>
+                                    <div className="p-2 bg-gray-50 rounded">中国エリア</div>
+                                    <div className="p-2 bg-gray-50 rounded">関西エリア</div>
+                                    <div className="p-2 bg-gray-50 rounded">関東エリア</div>
+                                    <div className="p-2 bg-gray-50 rounded">各営業所</div>
+                                    <div className="p-2 bg-gray-50 rounded">プロジェクト別</div>
+                                </div>
+                            </div>
+                            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3">
+                                <p className="text-sm"><strong>ポイント：</strong>ZoomもLINE WORKSも、Meetとチャットが使えるようになってから解約します</p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "全体スケジュール",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-gradient-to-r from-blue-50 to-green-50 p-5 rounded-lg">
+                                <h3 className="font-bold text-lg mb-4 text-center">【移行完了までの目安：3～4ヶ月】</h3>
+                                <div className="space-y-3">
+                                    <div className="bg-white p-4 rounded-lg shadow">
+                                        <div className="flex items-center mb-2">
+                                            <span className="bg-green-500 text-white px-3 py-1 rounded text-sm font-bold mr-3">1ヶ月目</span>
+                                            <span className="font-bold">第1段階：データ整理</span>
+                                        </div>
+                                        <div className="ml-24 text-sm text-gray-600">
+                                            <p>• 全部署でファイルの整理</p>
+                                            <p>• 不要なデータの削除</p>
+                                            <p>• 移行計画の最終確認</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white p-4 rounded-lg shadow">
+                                        <div className="flex items-center mb-2">
+                                            <span className="bg-blue-500 text-white px-3 py-1 rounded text-sm font-bold mr-3">2ヶ月目</span>
+                                            <span className="font-bold">第2段階：ファイル移行開始</span>
+                                        </div>
+                                        <div className="ml-24 text-sm text-gray-600">
+                                            <p>• 本社から順次移行</p>
+                                            <p>• 各営業所も並行して進める</p>
+                                            <p>• 動作確認を随時実施</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white p-4 rounded-lg shadow">
+                                        <div className="flex items-center mb-2">
+                                            <span className="bg-orange-500 text-white px-3 py-1 rounded text-sm font-bold mr-3">3ヶ月目</span>
+                                            <span className="font-bold">第3段階：メール切り替え</span>
+                                        </div>
+                                        <div className="ml-24 text-sm text-gray-600">
+                                            <p>• 1人ずつGmailへ移行</p>
+                                            <p>• 毎日5～10名ずつ対応</p>
+                                            <p>• サポート体制を整備</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white p-4 rounded-lg shadow">
+                                        <div className="flex items-center mb-2">
+                                            <span className="bg-purple-500 text-white px-3 py-1 rounded text-sm font-bold mr-3">4ヶ月目</span>
+                                            <span className="font-bold">第4段階：最終調整</span>
+                                        </div>
+                                        <div className="ml-24 text-sm text-gray-600">
+                                            <p>• Meet・Chatへ切り替え</p>
+                                            <p>• 全体の動作確認</p>
+                                            <p>• Office365の一部解約</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "コストの管理",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-red-50 p-5 rounded-lg border-2 border-red-300">
+                                <h3 className="font-bold text-lg mb-3 text-red-700">【注意が必要なポイント】</h3>
+                                <p className="text-gray-700 mb-3">移行期間中は、Office365とGoogle Workspaceの両方の費用が発生します</p>
+                                <p className="text-gray-700">そのため、できるだけ短期間で移行を完了させる必要があります</p>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg shadow">
+                                <h3 className="font-bold mb-3">【費用削減のタイミング】</h3>
+                                <div className="space-y-3">
+                                    <div className="p-3 bg-yellow-50 rounded">
+                                        <p className="font-bold mb-1">① ファイル移行完了後</p>
+                                        <p className="text-sm text-gray-600">→ NASサーバの利用を停止できる</p>
+                                    </div>
+                                    <div className="p-3 bg-yellow-50 rounded">
+                                        <p className="font-bold mb-1">② メール移行完了後</p>
+                                        <p className="text-sm text-gray-600">→ Outlookの大部分を解約できる（一部は残す）</p>
+                                    </div>
+                                    <div className="p-3 bg-yellow-50 rounded">
+                                        <p className="font-bold mb-1">③ 全移行完了後</p>
+                                        <p className="text-sm text-gray-600">→ ZOOM、LINE WORKSを解約できる</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-green-50 p-4 rounded-lg">
+                                <h3 className="font-bold mb-2 text-green-700">【残すOffice365アカウント】</h3>
+                                <p className="text-gray-700 mb-2">社外からExcel・Wordファイルを受け取る部署で数名分は残します</p>
+                                <p className="text-sm text-gray-600">例：営業部門、管理部門など（3～5アカウント程度）</p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "実施体制（誰が何をするか）",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-blue-50 p-5 rounded-lg">
+                                <h3 className="font-bold text-lg mb-3 text-blue-700">【役割分担】</h3>
+                                <div className="space-y-3">
+                                    <div className="bg-white p-3 rounded-lg shadow">
+                                        <p className="font-bold text-blue-600 mb-2">🎯 プロジェクト責任者</p>
+                                        <p className="text-sm text-gray-700">全体の進捗管理、判断、スケジュール調整</p>
+                                        <p className="text-xs text-gray-500 mt-1">担当：管理部門の責任者</p>
+                                    </div>
+                                    <div className="bg-white p-3 rounded-lg shadow">
+                                        <p className="font-bold text-green-600 mb-2">💻 技術サポート担当</p>
+                                        <p className="text-sm text-gray-700">Google Workspaceの設定、トラブル対応、社員サポート</p>
+                                        <p className="text-xs text-gray-500 mt-1">担当：ソーシャルメディア課、TSC</p>
+                                    </div>
+                                    <div className="bg-white p-3 rounded-lg shadow">
+                                        <p className="font-bold text-orange-600 mb-2">📁 データ整理担当</p>
+                                        <p className="text-sm text-gray-700">各部署でのファイル整理、移行対象の選定</p>
+                                        <p className="text-xs text-gray-500 mt-1">担当：各部署の責任者・マネージャー</p>
+                                    </div>
+                                    <div className="bg-white p-3 rounded-lg shadow">
+                                        <p className="font-bold text-purple-600 mb-2">📧 メール移行サポート</p>
+                                        <p className="text-sm text-gray-700">社員1人ずつのメール設定をサポート</p>
+                                        <p className="text-xs text-gray-500 mt-1">担当：技術サポート担当 + 各エリアのサポート役</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3">
+                                <p className="text-sm"><strong>ポイント：</strong>全社員が協力して進めることが成功のカギです</p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "社員向けのサポート体制",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-green-50 p-5 rounded-lg">
+                                <h3 className="font-bold text-lg mb-3 text-green-700">【困ったときの相談先】</h3>
+                                <div className="space-y-3">
+                                    <div className="bg-white p-4 rounded-lg shadow">
+                                        <p className="font-bold mb-2">① 使い方マニュアルの作成</p>
+                                        <p className="text-sm text-gray-600">Google Workspace各ツールの簡単な使い方ガイドを用意</p>
+                                        <div className="mt-2 text-xs text-gray-500">
+                                            <p>• Gmailの使い方</p>
+                                            <p>• Googleドライブでのファイル共有方法</p>
+                                            <p>• Google Meetの会議の開き方</p>
+                                            <p>• Google Chatの使い方</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white p-4 rounded-lg shadow">
+                                        <p className="font-bold mb-2">② 説明会の開催</p>
+                                        <p className="text-sm text-gray-600">エリアごと、部署ごとに使い方の説明会を実施</p>
+                                        <p className="text-xs text-gray-500 mt-1">（オンライン・対面どちらでも対応）</p>
+                                    </div>
+                                    <div className="bg-white p-4 rounded-lg shadow">
+                                        <p className="font-bold mb-2">③ 問い合わせ窓口の設置</p>
+                                        <p className="text-sm text-gray-600">困ったことがあったらすぐに相談できる窓口を用意</p>
+                                        <p className="text-xs text-gray-500 mt-1">担当：TSC、ソーシャルメディア課</p>
+                                    </div>
+                                    <div className="bg-white p-4 rounded-lg shadow">
+                                        <p className="font-bold mb-2">④ よくある質問（FAQ）の準備</p>
+                                        <p className="text-sm text-gray-600">よく聞かれる質問と答えをまとめたリストを共有</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-blue-50 p-3 rounded-lg">
+                                <p className="text-sm text-gray-700"><strong>目標：</strong>誰でも困らずに新しいツールを使えるようにサポートします</p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "想定されるリスクと対策",
+                    content: (
+                        <div className="space-y-3">
+                            <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                                <p className="font-bold mb-2 text-red-700">⚠️ リスク1：データの消失</p>
+                                <p className="text-sm text-gray-700 mb-2">移行中にデータが失われる可能性</p>
+                                <p className="text-sm bg-white p-2 rounded"><strong>対策：</strong>移行完了まで元のNASサーバのデータは残しておく。バックアップも取る</p>
+                            </div>
+                            <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                                <p className="font-bold mb-2 text-red-700">⚠️ リスク2：メールの受信漏れ</p>
+                                <p className="text-sm text-gray-700 mb-2">切り替え時にメールが届かなくなる可能性</p>
+                                <p className="text-sm bg-white p-2 rounded"><strong>対策：</strong>1人ずつ慎重に設定を行い、必ずテストメールで確認する</p>
+                            </div>
+                            <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                                <p className="font-bold mb-2 text-red-700">⚠️ リスク3：社員が使い方に慣れない</p>
+                                <p className="text-sm text-gray-700 mb-2">新しいツールに慣れず、業務効率が下がる可能性</p>
+                                <p className="text-sm bg-white p-2 rounded"><strong>対策：</strong>十分な説明会とマニュアル、サポート体制を用意する</p>
+                            </div>
+                            <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                                <p className="font-bold mb-2 text-red-700">⚠️ リスク4：移行期間が長引く</p>
+                                <p className="text-sm text-gray-700 mb-2">予定より時間がかかり、コストが増える可能性</p>
+                                <p className="text-sm bg-white p-2 rounded"><strong>対策：</strong>週次で進捗確認会議を実施。遅れが出たらすぐに対応策を検討</p>
+                            </div>
+                            <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                                <p className="font-bold mb-2 text-red-700">⚠️ リスク5：社外とのファイル互換性</p>
+                                <p className="text-sm text-gray-700 mb-2">社外から送られてくるExcel等が開けない可能性</p>
+                                <p className="text-sm bg-white p-2 rounded"><strong>対策：</strong>数名分のOffice365を残す。問題が出たら柔軟に対応</p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "移行前のチェックリスト",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-blue-50 p-4 rounded-lg">
+                                <h3 className="font-bold mb-3 text-blue-700">【移行を始める前に確認すること】</h3>
+                                <div className="space-y-2">
+                                    <div className="bg-white p-3 rounded flex items-start">
+                                        <input type="checkbox" className="mt-1 mr-3" />
+                                        <span className="text-sm">Google Workspaceの契約完了</span>
+                                    </div>
+                                    <div className="bg-white p-3 rounded flex items-start">
+                                        <input type="checkbox" className="mt-1 mr-3" />
+                                        <span className="text-sm">全社員のGoogleアカウント作成完了</span>
+                                    </div>
+                                    <div className="bg-white p-3 rounded flex items-start">
+                                        <input type="checkbox" className="mt-1 mr-3" />
+                                        <span className="text-sm">共有ドライブのフォルダ構成設計完了</span>
+                                    </div>
+                                    <div className="bg-white p-3 rounded flex items-start">
+                                        <input type="checkbox" className="mt-1 mr-3" />
+                                        <span className="text-sm">各部署の責任者への説明完了</span>
+                                    </div>
+                                    <div className="bg-white p-3 rounded flex items-start">
+                                        <input type="checkbox" className="mt-1 mr-3" />
+                                        <span className="text-sm">技術サポート体制の確立</span>
+                                    </div>
+                                    <div className="bg-white p-3 rounded flex items-start">
+                                        <input type="checkbox" className="mt-1 mr-3" />
+                                        <span className="text-sm">使い方マニュアルの準備完了</span>
+                                    </div>
+                                    <div className="bg-white p-3 rounded flex items-start">
+                                        <input type="checkbox" className="mt-1 mr-3" />
+                                        <span className="text-sm">バックアップ計画の策定</span>
+                                    </div>
+                                    <div className="bg-white p-3 rounded flex items-start">
+                                        <input type="checkbox" className="mt-1 mr-3" />
+                                        <span className="text-sm">全社員への移行スケジュール通知</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-green-50 p-4 rounded-lg">
+                                <p className="text-sm text-gray-700"><strong>すべてにチェックが入ったら、移行スタート！</strong></p>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    title: "まとめ",
+                    content: (
+                        <div className="space-y-4">
+                            <div className="bg-gradient-to-r from-blue-100 to-green-100 p-6 rounded-lg">
+                                <h3 className="font-bold text-xl mb-4 text-center text-gray-800">移行成功のポイント</h3>
+                                <div className="space-y-3">
+                                    <div className="bg-white p-4 rounded-lg shadow-md flex items-start">
+                                        <span className="text-3xl mr-3">📋</span>
+                                        <div>
+                                            <p className="font-bold mb-1">計画的に進める</p>
+                                            <p className="text-sm text-gray-600">焦らず、順番通りに、確実に</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white p-4 rounded-lg shadow-md flex items-start">
+                                        <span className="text-3xl mr-3">🤝</span>
+                                        <div>
+                                            <p className="font-bold mb-1">全員で協力する</p>
+                                            <p className="text-sm text-gray-600">部署を超えてみんなで助け合う</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white p-4 rounded-lg shadow-md flex items-start">
+                                        <span className="text-3xl mr-3">💬</span>
+                                        <div>
+                                            <p className="font-bold mb-1">こまめに情報共有</p>
+                                            <p className="text-sm text-gray-600">困ったことはすぐに相談、進捗も随時報告</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white p-4 rounded-lg shadow-md flex items-start">
+                                        <span className="text-3xl mr-3">⏱️</span>
+                                        <div>
+                                            <p className="font-bold mb-1">スケジュール管理を徹底</p>
+                                            <p className="text-sm text-gray-600">コスト削減のため、できるだけ短期間で</p>
+                                        </div>
+                                    </div>
+                                    <div className="bg-white p-4 rounded-lg shadow-md flex items-start">
+                                        <span className="text-3xl mr-3">🛡️</span>
+                                        <div>
+                                            <p className="font-bold mb-1">データは慎重に扱う</p>
+                                            <p className="text-sm text-gray-600">バックアップを取り、消失リスクをゼロに</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-blue-600 text-white p-5 rounded-lg text-center">
+                                <p className="text-lg font-bold">目標：3～4ヶ月で安全・確実に移行完了！</p>
+                                <p className="text-sm mt-2">みんなで協力して、新しい働き方を実現しましょう</p>
+                            </div>
+                        </div>
+                    )
+                }
+            ];
+
+            const nextSlide = () => {
+                if (currentSlide < slides.length - 1) {
+                    setCurrentSlide(currentSlide + 1);
+                }
+            };
+
+            const prevSlide = () => {
+                if (currentSlide > 0) {
+                    setCurrentSlide(currentSlide - 1);
+                }
+            };
+
+            const goToSlide = (index) => {
+                setCurrentSlide(index);
+            };
+
+            const slide = slides[currentSlide];
+
+            return (
+                <div className="w-full h-screen bg-gray-100 flex flex-col">
+                    <div className="flex-1 flex items-center justify-center p-4">
+                        <div className="w-full max-w-5xl h-full max-h-[600px] bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col">
+                            <div className={`${slide.bgColor || 'bg-gradient-to-r from-blue-500 to-blue-600'} text-white p-6`}>
+                                <h1 className="text-3xl font-bold whitespace-pre-line">{slide.title}</h1>
+                                {slide.subtitle && (
+                                    <p className="text-lg mt-2 opacity-90">{slide.subtitle}</p>
+                                )}
+                            </div>
+                            <div className="flex-1 overflow-y-auto p-8">
+                                {slide.content}
+                            </div>
+                            <div className="p-4 bg-gray-50 border-t text-center text-sm text-gray-600">
+                                {currentSlide + 1} / {slides.length}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bg-white border-t p-4">
+                        <div className="max-w-5xl mx-auto flex items-center justify-between">
+                            <button
+                                onClick={prevSlide}
+                                disabled={currentSlide === 0}
+                                className={`flex items-center px-4 py-2 rounded-lg font-medium ${
+                                    currentSlide === 0
+                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                        : 'bg-blue-500 text-white hover:bg-blue-600'
+                                }`}
+                            >
+                                <ChevronLeft />
+                                前へ
+                            </button>
+                            <div className="flex gap-2 overflow-x-auto max-w-md">
+                                {slides.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => goToSlide(index)}
+                                        className={`w-3 h-3 rounded-full transition-all ${
+                                            index === currentSlide
+                                                ? 'bg-blue-500 w-8'
+                                                : 'bg-gray-300 hover:bg-gray-400'
+                                        }`}
+                                        title={`スライド ${index + 1}`}
+                                    />
+                                ))}
+                            </div>
+                            <button
+                                onClick={nextSlide}
+                                disabled={currentSlide === slides.length - 1}
+                                className={`flex items-center px-4 py-2 rounded-lg font-medium ${
+                                    currentSlide === slides.length - 1
+                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                        : 'bg-blue-500 text-white hover:bg-blue-600'
+                                }`}
+                            >
+                                次へ
+                                <ChevronRight />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<MigrationPlan />, document.getElementById('root'));
+    </script>
+</body>
+</html>
